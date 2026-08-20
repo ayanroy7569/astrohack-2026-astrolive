@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AstroLive Sankalp — AstroHack 2026 Prototype</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#111;color:#f6f1e9;font-family:Inter,Arial,sans-serif}
+.app{width:390px;max-width:100%;min-height:844px;margin:20px auto;background:#17121f;border-radius:28px;overflow:hidden;box-shadow:0 20px 60px #000}
+header{padding:18px 18px 12px;display:flex;justify-content:space-between;align-items:center;background:#1b1525;position:sticky;top:0;z-index:5}
+.logo{font-weight:800;font-size:21px}.logo span{color:#d8a84e}.avatar{width:36px;height:36px;border-radius:50%;background:#d8a84e;color:#17121f;display:grid;place-items:center;font-weight:800}
+main{padding:16px 16px 92px}.screen{display:none}.screen.active{display:block}
+h1{font-size:25px;margin:8px 0}h2{font-size:19px;margin:20px 0 12px}.muted{color:#aaa1ae;font-size:13px}.card{background:#211a2c;border:1px solid #30263d;border-radius:18px;padding:14px;margin:10px 0}
+.hero{background:linear-gradient(135deg,#3a2053,#1e1730);border:1px solid #68457e;padding:20px;border-radius:22px}
+.hero b{color:#f0c86b}.btn{width:100%;border:0;border-radius:14px;padding:13px;font-weight:800;background:#d8a84e;color:#18121d;cursor:pointer;margin-top:10px}.btn.secondary{background:#30263d;color:#fff}.btn.small{width:auto;padding:9px 12px;margin:0}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tile{background:#211a2c;border:1px solid #30263d;border-radius:16px;padding:13px;cursor:pointer}.tile .icon{font-size:25px;margin-bottom:8px}.tile b{font-size:13px}.tile p{font-size:11px;color:#aaa;margin:5px 0 0}
+.scroll{display:flex;gap:10px;overflow:auto;padding-bottom:4px}.scroll::-webkit-scrollbar{display:none}.shopcard{min-width:150px;background:#211a2c;border-radius:16px;padding:12px;border:1px solid #30263d}.product{height:105px;border-radius:13px;background:linear-gradient(135deg,#422d55,#1d1728);display:grid;place-items:center;font-size:42px}.price{font-weight:800;color:#f0c86b;margin-top:7px}
+.pill{display:inline-block;background:#32243e;border-radius:30px;padding:7px 10px;font-size:11px;color:#e7c878;margin:3px;cursor:pointer}.pill.active{background:#d8a84e;color:#17121f}
+.banner{background:linear-gradient(100deg,#5a254a,#32203f);padding:14px;border-radius:17px}.banner b{font-size:16px}
+.input{width:100%;padding:12px;border-radius:12px;background:#15111b;border:1px solid #3a3045;color:#fff;margin:6px 0}
+.steps{display:flex;gap:5px;margin:15px 0}.step{height:5px;flex:1;background:#382e42;border-radius:10px}.step.on{background:#d8a84e}
+.check{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid #33293d;font-size:13px}
+.track{position:relative;padding-left:30px}.track:before{content:"";position:absolute;left:9px;top:5px;bottom:5px;width:2px;background:#4c4054}.event{position:relative;padding:8px 0 16px}.dot{position:absolute;left:-26px;top:10px;width:13px;height:13px;border-radius:50%;background:#d8a84e;border:3px solid #241a30}
+.bottom{position:fixed;bottom:0;width:390px;max-width:100%;background:#1b1525;border-top:1px solid #30263d;display:flex;justify-content:space-around;padding:10px 4px;z-index:10}.nav{font-size:11px;color:#aaa;text-align:center;cursor:pointer}.nav.active{color:#f0c86b}.nav span{display:block;font-size:21px}
+.back{color:#d8a84e;cursor:pointer;font-size:13px;margin-bottom:8px}
+.badge{background:#253b2e;color:#9fe0ae;padding:5px 8px;border-radius:20px;font-size:10px;font-weight:700}
+.search{display:flex;gap:8px}.search input{flex:1}.search button{width:48px}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div class="logo">ASTRO<span>LIVE</span> ✦</div><div class="avatar">A</div></header>
+<main>
+
+<section id="home" class="screen active">
+<div class="hero">
+<div class="muted">PERSONALISED SPIRITUAL CARE</div>
+<h1>Your rituals, verified.</h1>
+<p class="muted">Book a verified temple puja, watch proof, receive prasad, and keep every important spiritual date in one place.</p>
+<button class="btn" onclick="show('book')">Book a Puja →</button>
+</div>
+<div class="banner" style="margin-top:12px"><b>🪔 Family reminder</b><br><span class="muted">Dad's Shraddh is in 6 days</span><button class="btn small" onclick="show('calendar')" style="float:right;margin-top:-2px">View</button></div>
+
+<h2>AstroLive services</h2>
+<div class="grid3">
+<div class="tile" onclick="alert('Chat with verified astrologers')"><div class="icon">💬</div><b>Chat</b><p>Astrologer</p></div>
+<div class="tile" onclick="alert('Your daily horoscope')"><div class="icon">☀️</div><b>Horoscope</b><p>Daily guidance</p></div>
+<div class="tile" onclick="alert('Kundli consultation')"><div class="icon">📜</div><b>Kundli</b><p>Birth chart</p></div>
+<div class="tile" onclick="alert('Compatibility calculator')"><div class="icon">❤️</div><b>Match</b><p>Compatibility</p></div>
+<div class="tile" onclick="alert('Dosha calculator')"><div class="icon">🔮</div><b>Calculators</b><p>Dosha & more</p></div>
+<div class="tile" onclick="show('shop')"><div class="icon">🛍️</div><b>Astro Shop</b><p>Curated items</p></div>
+</div>
+
+<h2>Popular temple rituals</h2>
+<div class="scroll">
+<div class="shopcard"><div class="product">🛕</div><b>Mahadev Abhishek</b><div class="price">₹1,499</div></div>
+<div class="shopcard"><div class="product">🪔</div><b>Navagraha Puja</b><div class="price">₹2,499</div></div>
+<div class="shopcard"><div class="product">🌺</div><b>Lakshmi Puja</b><div class="price">₹1,999</div></div>
+</div>
+</section>
+
+<section id="book" class="screen">
+<div class="back" onclick="show('home')">← Back</div><h1>Book a Puja</h1><div class="steps"><i class="step on"></i><i class="step"></i><i class="step"></i><i class="step"></i></div>
+<h2>1. Choose occasion</h2>
+<div class="grid">
+<div class="tile" onclick="selectOcc(this,'Birthday Puja')">🎂<br><b>Birthday</b><p>New year blessings</p></div>
+<div class="tile" onclick="selectOcc(this,'Shraddh')">🪔<br><b>Shraddh</b><p>Ancestor remembrance</p></div>
+<div class="tile" onclick="selectOcc(this,'Festival Puja')">🌺<br><b>Festival</b><p>Festive rituals</p></div>
+<div class="tile" onclick="selectOcc(this,'Health & Peace')">🙏<br><b>Health & Peace</b><p>Well-being</p></div>
+</div>
+<button class="btn" onclick="show('temple')">Continue</button>
+</section>
+
+<section id="temple" class="screen">
+<div class="back" onclick="show('book')">← Back</div><h1>Choose temple</h1><div class="steps"><i class="step on"></i><i class="step on"></i><i class="step"></i><i class="step"></i></div>
+<div class="card" onclick="selectTemple(this,'Kashi Verified Temple','₹1,999')"><b>Kashi Verified Temple</b><br><span class="muted">📍 Varanasi · ⭐ 4.9</span><p>Verified priest network · Video proof</p><b>₹1,999</b></div>
+<div class="card" onclick="selectTemple(this,'Dakshineswar Partner Temple','₹1,499')"><b>Dakshineswar Partner Temple</b><br><span class="muted">📍 Kolkata · ⭐ 4.8</span><p>Verified priest network · Prasad delivery</p><b>₹1,499</b></div>
+<div class="card" onclick="selectTemple(this,'Ujjain Verified Temple','₹2,499')"><b>Ujjain Verified Temple</b><br><span class="muted">📍 Ujjain · ⭐ 4.9</span><p>Verified priest · Live video available</p><b>₹2,499</b></div>
+<button class="btn" onclick="show('custom')">Continue</button>
+</section>
+
+<section id="custom" class="screen">
+<div class="back" onclick="show('temple')">← Back</div><h1>Personalise Sankalp</h1><div class="steps"><i class="step on"></i><i class="step on"></i><i class="step on"></i><i class="step"></i></div>
+<p class="muted">Sankalp is the priest's declaration of intent for the ritual.</p>
+<input class="input" placeholder="Devotee / family name">
+<input class="input" placeholder="Gotra (optional)">
+<div class="card"><div class="check"><span>🎥 Live video add-on</span><input type="checkbox" onchange="toggleAdd(399)"></div><div class="check"><span>📦 Prasad delivery</span><input type="checkbox" checked onchange="toggleAdd(199)"></div><div class="check"><span>🧿 Remedy kit</span><input type="checkbox" onchange="toggleAdd(299)"></div></div>
+<div class="card"><b>Trust protection</b><p class="muted">Payment is held until verified video proof is uploaded. Temple/priests are verified partners.</p></div>
+<button class="btn" onclick="show('pay')">Review & Pay</button>
+</section>
+
+<section id="pay" class="screen">
+<div class="back" onclick="show('custom')">← Back</div><h1>Review order</h1><div class="steps"><i class="step on"></i><i class="step on"></i><i class="step on"></i><i class="step on"></i></div>
+<div class="card"><div class="check"><span>Occasion</span><b id="occ">Birthday Puja</b></div><div class="check"><span>Temple</span><b id="tem">Verified Temple</b></div><div class="check"><span>Base puja</span><b id="base">₹1,499</b></div><div class="check"><span>Add-ons</span><b id="addons">₹199</b></div><div class="check"><span>Total</span><b id="total">₹1,698</b></div></div>
+<div class="card"><span class="badge">✓ VERIFIED PARTNER</span><p class="muted">You receive video proof + digital puja certificate + prasad tracking.</p></div>
+<button class="btn" onclick="show('track')">Pay Securely & Book</button>
+</section>
+
+<section id="track" class="screen">
+<div class="back" onclick="show('home')">← Home</div><h1>Your Puja is being tracked</h1>
+<div class="card"><span class="badge">● LIVE ORDER</span><h2 style="margin-bottom:4px">Mahadev Abhishek</h2><span class="muted">Order #AL-260819</span></div>
+<div class="track">
+<div class="event"><div class="dot"></div><b>✓ Sankalp confirmed</b><br><span class="muted">10:05 AM · Family details received</span></div>
+<div class="event"><div class="dot"></div><b>✓ Priest assigned</b><br><span class="muted">Verified priest · Temple partner</span></div>
+<div class="event"><div class="dot"></div><b>✓ Puja performed</b><br><span class="muted">Video proof verified by AstroLive</span></div>
+<div class="event"><div class="dot"></div><b>Prasad shipped</b><br><span class="muted">Tracking will appear here</span></div>
+</div>
+<div class="card" style="text-align:center"><div style="font-size:60px">🎥</div><b>Temple Verified</b><p class="muted">Video proof available</p><button class="btn" onclick="alert('Demo: verified puja video opens here')">Watch Proof</button><button class="btn secondary" onclick="alert('Demo: digital certificate shared')">Share Puja Certificate</button></div>
+</section>
+
+<section id="shop" class="screen">
+<h1>Astro Shop</h1><p class="muted">Personalised spiritual products, remedies & puja essentials.</p>
+<div class="search"><input class="input" placeholder="Search products..."><button class="btn small">⌕</button></div>
+<div style="margin:10px 0;white-space:nowrap;overflow:auto">
+<span class="pill active">All</span><span class="pill">Puja Kits</span><span class="pill">Gemstones</span><span class="pill">Rudraksha</span><span class="pill">Incense</span><span class="pill">Yantras</span><span class="pill">Books</span>
+</div>
+<div class="banner"><b>🌕 Purnima Special</b><br><span class="muted">Up to 20% off on puja kits & spiritual essentials</span></div>
+<h2>Recommended for you</h2>
+<div class="grid">
+<div class="shopcard"><div class="product">📿</div><b>5 Mukhi Rudraksha</b><p class="muted">Meditation & daily practice</p><div class="price">₹699</div><button class="btn small">Add</button></div>
+<div class="shopcard"><div class="product">🪔</div><b>Mahadev Puja Kit</b><p class="muted">Complete ritual essentials</p><div class="price">₹899</div><button class="btn small">Add</button></div>
+<div class="shopcard"><div class="product">💎</div><b>Certified Gemstone</b><p class="muted">Astrologer recommended</p><div class="price">₹2,499</div><button class="btn small">Add</button></div>
+<div class="shopcard"><div class="product">📿</div><b>Navagraha Mala</b><p class="muted">Personalised recommendation</p><div class="price">₹1,299</div><button class="btn small">Add</button></div>
+</div>
+<h2>AstroLive existing services</h2>
+<div class="grid">
+<div class="tile" onclick="alert('Chat with astrologer')">💬 <b>Talk to an Astrologer</b></div>
+<div class="tile" onclick="alert('Open horoscope')">☀️ <b>My Horoscope</b></div>
+<div class="tile" onclick="alert('Open Kundli')">📜 <b>My Kundli</b></div>
+<div class="tile" onclick="alert('Open calculators')">🔢 <b>Astro Calculators</b></div>
+</div>
+</section>
+
+<section id="calendar" class="screen">
+<h1>Spiritual Calendar</h1><p class="muted">Turn one-time rituals into a meaningful yearly habit.</p>
+<div class="card"><b>August 25 · Dad's Shraddh</b><p class="muted">Reminder set · Book ritual 3 days before</p><button class="btn small" onclick="show('book')">Book now</button></div>
+<div class="card"><b>September 7 · Ganesh Chaturthi</b><p class="muted">Suggested: Ganesh Puja + prasad</p><button class="btn small" onclick="show('book')">Explore</button></div>
+<div class="card"><b>Every Monday · Mahadev Puja</b><p class="muted">Recurring ritual subscription</p><button class="btn small" onclick="show('book')">Set up</button></div>
+<div class="hero"><b>✨ AstroLive Circle</b><p class="muted">Monthly subscription: recurring puja reminders, priority booking, selected discounts and monthly spiritual guidance.</p><button class="btn">Join Circle · ₹299/mo</button></div>
+</section>
+</main>
+
+<nav class="bottom">
+<div class="nav active" onclick="show('home')"><span>⌂</span>Home</div>
+<div class="nav" onclick="show('track')"><span>🪔</span>My Puja</div>
+<div class="nav" onclick="show('shop')"><span>🛍️</span>Shop</div>
+<div class="nav" onclick="show('calendar')"><span>📅</span>Calendar</div>
+</nav>
+</div>
+<script>
+let occ='Birthday Puja', temple='Verified Temple', base=1499, addons=199;
+function show(id){
+ document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ window.scrollTo(0,0);
+ document.querySelectorAll('.nav').forEach(x=>x.classList.remove('active'));
+ const map={home:0,track:1,shop:2,calendar:3};
+ if(map[id]!==undefined) document.querySelectorAll('.nav')[map[id]].classList.add('active');
+}
+function selectOcc(el,v){occ=v;document.getElementById('occ').textContent=v;document.querySelectorAll('#book .tile').forEach(x=>x.style.borderColor='#30263d');el.style.borderColor='#d8a84e'}
+function selectTemple(el,v,p){temple=v;base=parseInt(p.replace(/[₹,]/g,''));document.getElementById('tem').textContent=v;document.getElementById('base').textContent=p;document.getElementById('total').textContent='₹'+(base+addons).toLocaleString('en-IN');document.querySelectorAll('#temple .card').forEach(x=>x.style.borderColor='#30263d');el.style.borderColor='#d8a84e'}
+function toggleAdd(v){addons += v;document.getElementById('addons').textContent='₹'+addons.toLocaleString('en-IN');document.getElementById('total').textContent='₹'+(base+addons).toLocaleString('en-IN')}
+</script>
+</body>
+</html>
